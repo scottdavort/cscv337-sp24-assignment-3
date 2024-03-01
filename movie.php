@@ -6,7 +6,7 @@ $movie = isset($_REQUEST["film"]) ? $_REQUEST["film"] : null;
 $infoPath = "./film/" . $movie . "/info.txt";
 $overviewPath = "./film/" . $movie . "/overview.txt";
 $reviewsPath = "./film/" . $movie . "/reviews.txt";
-$posterDirPath = "./film/" . $movie . "/movie_poster"; // Updated path for movie posters
+$posterDirPath = "./film/" . $movie . "/poster"; // Updated path for movie posters
 
 // Initialize variables to store movie details, reviews, and YouTube preview URL
 $title = $year = $rating = $numReviews = $youtubeURL = "";
@@ -74,7 +74,7 @@ if (is_dir($posterDirPath)) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THIS IS A TEST <?php echo htmlspecialchars($title); ?> - Movie Review</title>
+    <title><?php echo htmlspecialchars($title); ?> - Movie Review</title>
     <link rel="stylesheet" href="./css/movie.css">
     <!-- Google Materials -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />

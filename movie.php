@@ -46,7 +46,7 @@ if ($movie && file_exists($infoPath) && file_exists($overviewPath) && file_exist
     $reviewsContent = file_get_contents($reviewsPath);
     $reviewQuotes = explode('","', trim($reviewsContent, 'QUOTES: "'));
 } else {
-    echo "Movie not found or invalid movie name.";
+    echo "Movie not found or invalid movie name!!.";
     echo $film;
     echo $title;
     exit; // Stop script execution if movie data is not found

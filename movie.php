@@ -57,7 +57,7 @@ if ($movie && file_exists($infoPath) && file_exists($overviewPath) && file_exist
     exit; // Stop script execution if movie data is not found
 }
 
-// Fetch up to two movie poster images from the movie_poster directory
+// Fetch up to two movie poster images from the movie_poster directory within the movie folder
 if (is_dir($posterDirPath)) {
     $files = array_slice(scandir($posterDirPath), 2); // Exclude '.' and '..'
     foreach ($files as $file) {
@@ -90,7 +90,7 @@ if (is_dir($posterDirPath)) {
         <?php foreach ($posterImages as $index => $posterImagePath): ?>
             <img src="<?php echo htmlspecialchars($posterImagePath); ?>" alt="<?php echo htmlspecialchars($title); ?> Movie Poster <?php echo $index + 1; ?>" class="movie-poster">
         <?php endforeach; ?>
-
+        <h3><?php echo htmlspecialchars($posterImagePath); ?> POSTER TESTING <!-- testing -->
         <h2><?php echo htmlspecialchars($title); ?></h2>
         
         <!-- Display movie details -->

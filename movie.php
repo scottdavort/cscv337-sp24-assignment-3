@@ -47,7 +47,7 @@ if ($movie && file_exists($infoPath) && file_exists($overviewPath) && file_exist
     $reviewQuotes = explode('","', trim($reviewsContent, 'QUOTES: "'));
 } else {
     echo "Movie not found or invalid movie name!!.";
-    // testing
+    // deebug statements to troubleshoot
     print_r($movie);
     print_r($title);
     print_r($infoPath);
@@ -81,7 +81,7 @@ if (is_dir($posterDirPath)) {
 </head>
 <body>
 <header>
-    <h1>Movie Reviews <span class="material-symbols-outlined">movie</span></h1>
+    <h1>Dynamic Movie Reviews Pagee <span class="material-symbols-outlined">movie</span></h1>
 </header>
 
 <main>
@@ -90,6 +90,8 @@ if (is_dir($posterDirPath)) {
         <?php foreach ($posterImages as $index => $posterImagePath): ?>
             <img src="<?php echo htmlspecialchars($posterImagePath); ?>" alt="<?php echo htmlspecialchars($title); ?> Movie Poster <?php echo $index + 1; ?>" class="movie-poster">
         <?php endforeach; ?>
+        <?php if (empty($posterImages)): ?>
+            <img src="./img/no_poster.jpg" alt="No Poster Available" class="movie-poster">
 
         <h2><?php echo htmlspecialchars($title); ?></h2>
         

@@ -6,6 +6,7 @@ $movie = isset($_REQUEST["film"]) ? $_REQUEST["film"] : null;
 $infoPath = "./film/" . $movie . "/info.txt";
 $overviewPath = "./film/" . $movie . "/overview.txt";
 $reviewsPath = "./film/" . $movie . "/reviews.txt";
+$awardsviewPath = "./film/" . $movie . "/awards.txt";
 $posterDirPath = "./film/" . $movie . "/poster"; // Updated path for movie posters
 
 // Initialize variables to store movie details, reviews, and YouTube preview URL
@@ -15,7 +16,7 @@ $reviewQuotes = [];
 $posterImages = [];
 
 // Load movie information if the movie name is provided and the file exists
-if ($movie && file_exists($infoPath) && file_exists($overviewPath) && file_exists($reviewsPath)) {
+if ($movie && file_exists($infoPath) && file_exists($overviewPath) && file_exists($reviewsPath) && file_exists($awardsviewPath) ){
     // Process the info.txt file
     $info = file($infoPath, FILE_IGNORE_NEW_LINES);
     if (count($info) >= 4) {
@@ -30,17 +31,26 @@ if ($movie && file_exists($infoPath) && file_exists($overviewPath) && file_exist
         $value = trim($value);
         if ($key == "YOUTUBE_PREVIEW_URL") {
             $youtubeURL = $value;
-        } elseif ($key == "AWARD_WINS_TOTAL") {
-            $awardWinsTotal = $value;
-        } elseif ($key == "NOMINATIONS_TOTAL") {
-            $nominationsTotal = $value;
-        } elseif ($key == "OSCAR_WINS") {
-            $oscarWins = array_map('trim', explode(',', $value)); // Split by comma and trim each entry
         } else {
             $overviewDetails[$key] = $value;
         }
     }
     
+    // Process the awards.txt file
+    $awardsContent = file_get_contents($awardsviewPath);
+    $awardsviewLines = explode("\n", $awardsContent);
+    foreach ($awardsviewLines as $line) {
+        list($key, $value) = explode(":", $line, 2);
+        $key = trim($key);
+        $value = trim($value);
+        if ($key == "AWARD_WINS_TOTAL") {
+            $awardWinsTotal = $value;
+        } elseif ($key == "NOMINATIONS_TOTAL") {
+            $nominationsTotal = $value;
+        } elseif ($key == "OSCAR_WINS") {
+            $oscarWins = array_map('trim', explode(',', $value)); // Split by comma and trim each entry
+        }
+    }
     
     // Process the reviews.txt file
     $reviewsContent = file_get_contents($reviewsPath);

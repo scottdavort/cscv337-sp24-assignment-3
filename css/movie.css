@@ -14,13 +14,7 @@ header {
 }
 /* Add additional styles as needed */
 /*P {color: red; background-color: yellow;} renames the paragraph text to red and the background to yellow. */
-p{
 
-    color:red; 
-
-    background-color: yellow;
-
-}
 main {
     display: grid;
     grid-template-columns: 3fr 1fr;

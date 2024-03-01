@@ -1,5 +1,5 @@
 <?php
-// Get the movie name from the URL parameter
+// Get the movie name from the URL parameter i.e. ?film=movie_name
 $movie = isset($_REQUEST["film"]) ? $_REQUEST["film"] : null;
 
 // Define paths to the info, overview, reviews files, and poster directory
@@ -46,7 +46,9 @@ if ($movie && file_exists($infoPath) && file_exists($overviewPath) && file_exist
     $reviewsContent = file_get_contents($reviewsPath);
     $reviewQuotes = explode('","', trim($reviewsContent, 'QUOTES: "'));
 } else {
-    echo "Movie not found or invalid movie name.";
+    echo "Movie not found or invalid movie name!!.";
+    echo $film;
+    echo $title;
     exit; // Stop script execution if movie data is not found
 }
 
@@ -67,7 +69,7 @@ if (is_dir($posterDirPath)) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo htmlspecialchars($title); ?> - Movie Review</title>
+    <title>THIS IS A TEST <?php echo htmlspecialchars($title); ?> - Movie Review</title>
     <link rel="stylesheet" href="./css/movie.css">
     <!-- Google Materials -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
